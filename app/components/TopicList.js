@@ -2,21 +2,17 @@ import React, {Component} from 'react';
 
 import TopicItem from './TopicItem';
 
-class TopicList extends Component {
-    getItems() {
-        return  this.props.topics;
-    }
-    render(){
-        const items = this.getItems().map(item => {
-            return <TopicItem key={item.id} {...item} />;
-        });
+const TopicList = (props) => {
+   
+    let items = props.topics.map(item => {
+        return <TopicItem key={item.id} {...item} assignToMe={props.assignToMe}/>;
+    });
 
-        return (    
-            <div>
-                {items}
-            </div>
-        );
-    };
-}
+    return (    
+        <div>
+            {items}
+        </div>
+    );
+};
 
 export default TopicList;

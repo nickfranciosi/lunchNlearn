@@ -1,18 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class SuggestTopic extends Component {
-    render(){
-        return (
-            <div>
-                    <input ref={node => {
-                        this.input = node;
-                     }} type="text"/>
-                    <button onClick={() => {
-                        this.props.addItem(this.input.value);
-                     }}> AddSuggestion</button>
-            </div>
-        );
-    };
-}
+const SuggestTopic = ({addItem}) => {
+    let input;
+    return (
+        <div>
+            <input ref={node => {
+                input = node;
+                }} type="text"/>
+            <button className="btn" onClick={() => {
+                addItem(input.value);
+                }}> AddSuggestion</button>
+        </div>
+    );
+};
 
 export default SuggestTopic;

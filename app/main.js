@@ -37,9 +37,11 @@ class App extends React.Component {
     addItem(newItem){
         console.log(newItem);
         var item = {
-            name: newItem,
             id: this.counter++,
-            speaker: "who knows"
+            name: newItem,
+            speaker: null,
+            assigned: false,
+            completed: false
         };
         
         var newItems = this.state.items.concat(item);
@@ -47,11 +49,22 @@ class App extends React.Component {
         this.setState({items: newItems});
     }
     
+    assignToMe(id){
+        var newItems = this.state.items.map(item => {
+            if (item.id !== id) return item;
+            item.assigned = true;
+            item.speaker = 'Nick Franciosi';
+            return item;
+        });
+       
+       this.setState({items: newItems});
+    }
+    
     render(){
         return (
             <div>
                 <SuggestTopic addItem={this.addItem.bind(this)}/>
-                <TopicList topics={this.state.items}/>
+                <TopicList topics={this.state.items} assignToMe={this.assignToMe.bind(this)}/>
             </div>
         );
     }
