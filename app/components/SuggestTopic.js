@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class SuggestTopic extends React.Component {
+class SuggestTopic extends Component {
     render(){
         return (
             <div>
-                <form>
-                    <input type="text"/>
-                    <button>Add Suggestion</button>
-                </form>
+                    <input ref={node => {
+                        this.input = node;
+                     }} type="text"/>
+                    <button onClick={() => {
+                        this.props.addItem(this.input.value);
+                     }}> AddSuggestion</button>
             </div>
         );
     };

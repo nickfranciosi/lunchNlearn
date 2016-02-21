@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class TopicList extends React.Component {
+import TopicItem from './TopicItem';
+
+class TopicList extends Component {
+    getItems() {
+        return  this.props.topics;
+    }
     render(){
-        return (
-            <ul>
-                <li>Git</li>
-                <li>Security</li>
-                <li>SQL</li>
-                <li>ES6</li>
-                <li>Webpack</li>
-            </ul>
+        const items = this.getItems().map(item => {
+            return <TopicItem key={item.id} {...item} />;
+        });
+
+        return (    
+            <div>
+                {items}
+            </div>
         );
     };
 }
