@@ -1,5 +1,4 @@
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
   context: path.resolve('app'),
@@ -13,13 +12,6 @@ module.exports = {
   devServer: {
     contentBase: 'public'
   },
-
-  plugins: [
-    new webpack.ProvidePlugin({
-      _: 'lodash',
-    })
-  ],
-
 
   module: {
     loaders: [

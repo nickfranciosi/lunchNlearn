@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 import store from './stores/TopicStore';
 
@@ -45,7 +45,7 @@ class App extends React.Component {
 
 const render = () => {
     ReactDOM.render(
-         <Router history={hashHistory}>
+         <Router history={browserHistory}>
             <Route path="/" component={App}/>
             <Route path="/about" component={About}/>
         </Router>, 

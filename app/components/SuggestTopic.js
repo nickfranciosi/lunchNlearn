@@ -9,6 +9,7 @@ const SuggestTopic = ({addItem}) => {
                 }} type="text"/>
             <button className="btn" onClick={() => {
                 addItem(input.value);
+                input.value = ' ';
                 }}> AddSuggestion</button>
         </div>
     );
