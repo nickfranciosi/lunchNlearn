@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TopicItem = ({id, name, speaker, assignToMe}) => {
+const TopicItem = ({id, name, speaker, assignTopic}) => {
     return (<div>
             <h3>{name}</h3>
             <p>Speaker: {speaker}</p>
             <button className="btn" onClick={() => {
-                assignToMe(id);
+                assignTopic(id);
             }}>Assign To Me</button>
            </div>
     );

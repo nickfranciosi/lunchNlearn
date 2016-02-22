@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom';
 
 import store from './stores/TopicStore';
 
-
-console.log(store.getState());
-store.dispatch({type: 'INCREMENT'});
-console.log(store.getState());
 // components
 import TopicList from './components/TopicList';
 import SuggestTopic from './components/SuggestTopic';
@@ -22,13 +18,10 @@ class App extends React.Component {
             type: 'ADD_TOPIC',
             id: this.counter++,
             name: newItem,
-            speaker: null,
-            assigned: false,
-            completed: false
         });
     }
     
-    assignToMe(id){
+    assignTopic(id){
         store.dispatch({
             type: 'ASSIGN_SPEAKER',
             id: id,
@@ -40,7 +33,7 @@ class App extends React.Component {
         return (
             <div>
                 <SuggestTopic addItem={this.addItem.bind(this)}/>
-                <TopicList topics={store.getState()} assignToMe={this.assignToMe.bind(this)}/>
+                <TopicList topics={store.getState()} assignTopic={this.assignTopic.bind(this)}/>
             </div>
         );
     }
