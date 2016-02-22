@@ -14,13 +14,14 @@ const TopicStore = (state = [], action) => {
                 name: action.name
             });
             
-            return [...state, newTopic];
+            return [newTopic, ...state];
         case 'ASSIGN_SPEAKER':
             return state.map(topic => {
-                if(topic.id !== action.id) return topic;
-                topic.assigned = true;
-                topic.speaker = action.speaker;
-                return topic;
+               if(topic.id !== action.id) return topic;
+               return Object.assign(topic, {
+                    assigned: true,
+                    speaker: action.speaker
+                });
             });
         default:
             return state;
@@ -29,7 +30,7 @@ const TopicStore = (state = [], action) => {
 };
 
 
-const store = createStore(TopicStore);
+const store = createStore(TopicStore, [], window.devToolsExtension ? window.devToolsExtension() : undefined);
 
 
 export default store;
