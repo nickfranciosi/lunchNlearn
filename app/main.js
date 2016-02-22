@@ -29,7 +29,6 @@ class App extends React.Component {
     }
     
     assignToMe(id){
-        console.log('id:', id);
         store.dispatch({
             type: 'ASSIGN_SPEAKER',
             id: id,
