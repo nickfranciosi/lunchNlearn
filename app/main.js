@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
 import store from './stores/TopicStore';
 
 // components
 import TopicList from './components/TopicList';
 import SuggestTopic from './components/SuggestTopic';
+import About from './components/About';
+import Navigation from './components/Navigation';
 
 class App extends React.Component {
    constructor(props){
@@ -32,6 +35,7 @@ class App extends React.Component {
     render(){
         return (
             <div>
+                <Navigation />
                 <SuggestTopic addItem={this.addItem.bind(this)}/>
                 <TopicList topics={store.getState()} assignTopic={this.assignTopic.bind(this)}/>
             </div>
@@ -40,7 +44,12 @@ class App extends React.Component {
 }
 
 const render = () => {
-    ReactDOM.render(<App />, document.getElementById('app'));    
+    ReactDOM.render(
+         <Router history={browserHistory}>
+            <Route path="/" component={App}/>
+            <Route path="/about" component={About}/>
+        </Router>, 
+        document.getElementById('app'));    
 };
 
 store.subscribe(render);
