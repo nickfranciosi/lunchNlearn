@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
+import C from './constants';
 
-import store from './stores/TopicStore';
+import store from './store';
 
 // components
 import TopicList from './components/TopicList';
@@ -15,15 +16,15 @@ class App extends React.Component {
        super(props);
        this.counter = 0;
    }
-   
-    addItem(newItem){     
+
+    addItem(newItem){
         store.dispatch({
             type: 'ADD_TOPIC',
             id: this.counter++,
             name: newItem,
         });
     }
-    
+
     assignTopic(id){
         store.dispatch({
             type: 'ASSIGN_SPEAKER',
@@ -31,13 +32,13 @@ class App extends React.Component {
             speaker: 'Nick Franciosi'
         });
     }
-    
+
     render(){
         return (
             <div>
                 <Navigation />
                 <SuggestTopic addItem={this.addItem.bind(this)}/>
-                <TopicList topics={store.getState()} assignTopic={this.assignTopic.bind(this)}/>
+                <TopicList topics={store.getState().topics} assignTopic={this.assignTopic.bind(this)}/>
             </div>
         );
     }
@@ -48,10 +49,9 @@ const render = () => {
          <Router history={browserHistory}>
             <Route path="/" component={App}/>
             <Route path="/about" component={About}/>
-        </Router>, 
-        document.getElementById('app'));    
+        </Router>,
+        document.getElementById('app'));
 };
 
 store.subscribe(render);
 render();
-

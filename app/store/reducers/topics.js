@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
 
-const TopicStore = (state = [], action) => {
+
+export default (state = [], action) => {
     switch(action.type){
         case 'ADD_TOPIC':
              const emptyTopic = {
@@ -13,7 +13,7 @@ const TopicStore = (state = [], action) => {
                 id: action.id,
                 name: action.name
             });
-            
+
             return [newTopic, ...state];
         case 'ASSIGN_SPEAKER':
             return state.map(topic => {
@@ -26,11 +26,4 @@ const TopicStore = (state = [], action) => {
         default:
             return state;
     }
-    
 };
-
-
-const store = createStore(TopicStore, [], window.devToolsExtension ? window.devToolsExtension() : undefined);
-
-
-export default store;
