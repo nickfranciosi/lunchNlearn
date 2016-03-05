@@ -18,7 +18,7 @@ export default (state = [], action) => {
         case 'ASSIGN_SPEAKER':
             return state.map(topic => {
                if(topic.id !== action.id) return topic;
-               return Object.assign(topic, {
+               return Object.assign({}, topic, {
                     assigned: true,
                     speaker: action.speaker
                 });

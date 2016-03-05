@@ -4,6 +4,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import C from './constants';
 
 import store from './store';
+import {addTopic, assignTopic} from './actions';
 
 // components
 import TopicList from './components/TopicList';
@@ -14,23 +15,14 @@ import Navigation from './components/Navigation';
 class App extends React.Component {
    constructor(props){
        super(props);
-       this.counter = 0;
    }
 
     addItem(newItem){
-        store.dispatch({
-            type: 'ADD_TOPIC',
-            id: this.counter++,
-            name: newItem,
-        });
+        store.dispatch(addTopic(newItem));
     }
 
     assignTopic(id){
-        store.dispatch({
-            type: 'ASSIGN_SPEAKER',
-            id: id,
-            speaker: 'Nick Franciosi'
-        });
+        store.dispatch(assignTopic(id));
     }
 
     render(){
