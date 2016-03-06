@@ -1,8 +1,9 @@
 
+import C from '../../constants';
 
 export default (state = [], action) => {
     switch(action.type){
-        case 'ADD_TOPIC':
+        case C.ADD_TOPIC:
              const emptyTopic = {
                 speaker: null,
                 assigned: false,
@@ -15,7 +16,7 @@ export default (state = [], action) => {
             });
 
             return [newTopic, ...state];
-        case 'ASSIGN_SPEAKER':
+        case C.ASSIGN_SPEAKER:
             return state.map(topic => {
                if(topic.id !== action.id) return topic;
                return Object.assign({}, topic, {
