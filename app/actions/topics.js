@@ -21,10 +21,12 @@ export default {
     };
   },
   assignTopic: (id) => {
-    return {
-        type: C.ASSIGN_SPEAKER,
-        id: id,
-        speaker: 'Nick Franciosi'
+    return (dispatch, getStore) => {
+      topicsRef.child(id).update({speaker: 'Randy'}, (error) => {
+          if(!error){
+            dispatch({type: C.ASSIGN_TOPIC});
+          }
+      });
     };
   }
 };
