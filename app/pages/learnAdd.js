@@ -3,10 +3,37 @@ import { connect } from 'react-redux';
 import { addTopic } from '../actions';
 
 const LearnAdd = ({addTopic}) => {
+ let learnInput;
+ let teachInput;
+
+ const teachSubmit = (e) => {
+   e.preventDefault();
+   handleSubmit(teachInput.value, 'Nick Franciosi');
+ };
+
+ const learnSubmit = (e) => {
+   e.preventDefault();
+   handleSubmit(learnInput.value);
+ };
+
+  const handleSubmit = (topic, speaker = null) => {
+    addTopic({title: topic, speaker: speaker});
+  };
+
   return(
     <div>
-      <h2>Display forms to add items</h2>
-      <button onClick={() => addTopic({title: 'redux', speaker: 'Nick Franciosi'})}>Add Topic</button>
+      <form onSubmit={learnSubmit}>
+        <label>I want to learn</label>
+        <input ref={ref => {
+            learnInput = ref;
+          }} type="text"/>
+      </form>
+      <form onSubmit={teachSubmit}>
+        <label>I want to teach</label>
+        <input ref={ref => {
+            teachInput = ref;
+          }} type="text"/>
+      </form>
     </div>
   );
 };
