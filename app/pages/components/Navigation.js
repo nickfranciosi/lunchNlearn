@@ -6,6 +6,7 @@ const Navigation = () => {
             <div>
                <Link to="/" activeStyle={{ color: 'red' }}>Home</Link>
                <Link to="/about" activeStyle={{ color: 'red' }}>About</Link>
+               <Link to="/learn" activeStyle={{ color: 'red' }}>List</Link>
             </div>
     );
 };

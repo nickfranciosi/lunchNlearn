@@ -6,7 +6,7 @@ const LearnAdd = ({addTopic}) => {
   return(
     <div>
       <h2>Display forms to add items</h2>
-      <button onClick={() => addTopic('testing')}>Add Topic</button>
+      <button onClick={() => addTopic({title: 'redux', speaker: 'Nick Franciosi'})}>Add Topic</button>
     </div>
   );
 };

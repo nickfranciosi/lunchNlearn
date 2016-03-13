@@ -3,7 +3,11 @@ import C from '../../constants';
 
 export default (state = [], action) => {
     switch(action.type){
+        case C.RECEIVE_TOPICS_DATA:
+          console.log(action);
+          return action.data;
         case C.ADD_TOPIC:
+            console.log(action);
              const emptyTopic = {
                 speaker: null,
                 assigned: false,
@@ -12,9 +16,8 @@ export default (state = [], action) => {
             };
             let newTopic = Object.assign(emptyTopic,{
                 id: action.id,
-                name: action.name
+                title: action.title
             });
-
             return [newTopic, ...state];
         case C.ASSIGN_SPEAKER:
             return state.map(topic => {
