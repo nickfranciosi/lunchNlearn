@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { addTopic } from '../actions';
 
-const LearnAdd = ({addTopic}) => {
+const LearnAdd = ({addTopic}, {router}) => {
  let learnInput;
  let teachInput;
 
@@ -18,6 +18,7 @@ const LearnAdd = ({addTopic}) => {
 
   const handleSubmit = (topic, speaker = null) => {
     addTopic({title: topic, speaker: speaker});
+    router.push('/learn');
   };
 
   return(
@@ -37,6 +38,6 @@ const LearnAdd = ({addTopic}) => {
     </div>
   );
 };
-
+LearnAdd.contextTypes = {router: PropTypes.object};
 
 export default connect(null,{addTopic})(LearnAdd);

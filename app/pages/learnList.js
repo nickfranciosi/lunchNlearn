@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+//pass context through as second param to push to route
 const LearnList = ({ topics }) => {
   const assignedTopics = (key) => {
     const topic = topics[key];
