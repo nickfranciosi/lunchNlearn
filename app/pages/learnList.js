@@ -14,17 +14,18 @@ const LearnList = ({ topics, assignTopic }) => {
   const assignedTopics = (key) => {
     const topic = topics[key];
     if(!topic.speaker) return;
-    return <li key={key}>{topic.title} , {topic.speaker}</li>;
+    return <li key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker}</li>;
   };
 
   const unassignedTopics = (key) => {
     const topic = topics[key];
     if(topic.speaker) return;
     return (
+
       <li key={key}>
-        {topic.title}
+        <Link to={'/learn/' +  key} >{topic.title}</Link>
         <button className="btn btn-success"> Vote Up</button>
-        <button className="btn btn-primary" onClick={() => assignTopic(key)}>Sign Up</button>
+        <button className="btn btn-primary" onClick={() => assignTopic(key, 'Blake')}>Sign Up</button>
       </li>
     );
   };

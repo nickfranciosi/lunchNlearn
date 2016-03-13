@@ -1,4 +1,3 @@
-let counter = 0;
 import C from '../constants';
 import Firebase from 'firebase';
 const topicsRef = new Firebase(C.FIREBASE).child('topics');
@@ -15,12 +14,21 @@ export default {
     return (dispatch, getStore) => {
       topicsRef.push(topic, (error) => {
         if(!error){
-          dispatch({type: C.ADD_TOPIC, id: counter++, title: topic.title});
+          dispatch({type: C.ADD_TOPIC, title: topic.title});
         }
       });
     };
   },
-  assignTopic: (id) => {
+  assignTopic: (id, speaker) => {
+    return (dispatch, getStore) => {
+      topicsRef.child(id).update({ speaker }, (error) => {
+          if(!error){
+            dispatch({type: C.ASSIGN_TOPIC});
+          }
+      });
+    };
+  },
+  addDate: (id) => {
     return (dispatch, getStore) => {
       topicsRef.child(id).update({speaker: 'Randy'}, (error) => {
           if(!error){
