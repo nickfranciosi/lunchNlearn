@@ -9,7 +9,7 @@ class Wrapper extends Component {
     render(){
         return (
             <div className="wrapper">
-                {/*<Navigation />*/}
+                <Navigation />
                 {this.props.children}
             </div>
         );

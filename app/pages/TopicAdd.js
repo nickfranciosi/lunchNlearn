@@ -30,23 +30,19 @@ const TopicAdd = ({addTopic, auth}, {router}) => {
   };
 
   return(
-    <div className="flex-container">
-      <div className="left-half">
-        <form onSubmit={learnSubmit}>
-          <label>I want to learn</label>
-          <input ref={ref => {
-              learnInput = ref;
-            }} type="text"/>
-        </form>
-      </div>
-      <div className="right-half">
-        <form onSubmit={teachSubmit}>
-          <label>I want to teach</label>
-          <input ref={ref => {
-              teachInput = ref;
-            }} type="text"/>
-        </form>
-      </div>
+    <div className="row" style={{textAlign: 'center'}}>
+      <form className="col-sm-6" onSubmit={learnSubmit}>
+        <label>I want to learn</label>
+        <input ref={ref => {
+            learnInput = ref;
+          }} type="text"/>
+      </form>
+      <form className="col-sm-6" onSubmit={teachSubmit}>
+        <label>I want to teach</label>
+        <input ref={ref => {
+            teachInput = ref;
+          }} type="text"/>
+      </form>
     </div>
   );
 };
