@@ -2,7 +2,7 @@ import C from '../constants';
 import Firebase from 'firebase';
 const	fireRef = new Firebase(C.FIREBASE);
 
-module.exports = {
+export default {
 	// called at app start
 	startListeningToAuth: function(){
 		return function(dispatch,getState){

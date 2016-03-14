@@ -6,5 +6,10 @@ export default {
 		username: null,
 		uid: null
 	},
-  currentTopic : {}
+  currentTopic : {
+    title: null,
+    description: null,
+    assigned: null,
+    date: null
+  }
 };

@@ -1,14 +1,19 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { addTopic } from '../actions';
+import C from '../constants';
 
-const LearnAdd = ({addTopic}, {router}) => {
+const LearnAdd = ({addTopic, auth}, {router}) => {
  let learnInput;
  let teachInput;
 
  const teachSubmit = (e) => {
    e.preventDefault();
-   handleSubmit(teachInput.value, 'Nick Franciosi');
+   if(auth.currently !== C.LOGGED_IN){
+     alert('Log in to teach');
+     return;
+   }
+   handleSubmit(teachInput.value, auth.username);
  };
 
  const learnSubmit = (e) => {
@@ -17,8 +22,11 @@ const LearnAdd = ({addTopic}, {router}) => {
  };
 
   const handleSubmit = (topic, speaker = null) => {
-    addTopic({title: topic, speaker: speaker});
-    router.push('/learn');
+    //add new topic and pass a callback to route to new page
+    addTopic({title: topic, speaker: speaker}, (key) => {
+      router.push('/learn/' + key);
+    });
+
   };
 
   return(
@@ -40,4 +48,6 @@ const LearnAdd = ({addTopic}, {router}) => {
 };
 LearnAdd.contextTypes = {router: PropTypes.object};
 
-export default connect(null,{addTopic})(LearnAdd);
+const mapStateToProps = ({auth}) => {return {auth};};
+
+export default connect(mapStateToProps,{addTopic})(LearnAdd);

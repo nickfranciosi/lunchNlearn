@@ -1,12 +1,6 @@
 import C from '../../constants';
 
-/*
-A reducer is a function that takes the current state and an action, and then returns a
-new state. This reducer is responsible for appState.auth data.
-See `initialstate.js` for a clear view of what it looks like!
-*/
-
-module.exports = function(currentstate = {},action){
+export default function(currentstate = {},action){
 	switch(action.type){
 		case C.ATTEMPTING_LOGIN:
 			console.log('what up attempting');

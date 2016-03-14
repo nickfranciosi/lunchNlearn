@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {attemptLogin, logoutUser} from '../../actions';
 import C from '../../constants';
 import { Link } from 'react-router';
 
-var Authpanel = React.createClass({
-	render: function(){
-		var p = this.props, auth = p.auth;
+class Authpanel extends Component{
+	render(){
+		let p = this.props;
+		let {auth} = this.props;
 		switch(auth.currently){
 			case C.LOGGED_IN: return (
 				<div className="authpanel">
@@ -16,7 +17,7 @@ var Authpanel = React.createClass({
 			);
 			case C.AWAITING_AUTH_RESPONSE: return (
 				<div className="authpanel">
-					<button disabled><i className="fa fa-spinner fa-spin"></i> authenticating...</button>
+					<button disabled> authenticating...</button>
 				</div>
 			);
 			default: return (
@@ -26,13 +27,10 @@ var Authpanel = React.createClass({
 			);
 		}
 	}
-});
+};
 
-// now we connect the component to the Redux store:
 
-var mapStateToProps = function(state){
-	console.log(state);
-	// This component will have access to `appState.auth` through `this.props.auth`
+const mapStateToProps = (state) =>{
 	return {auth:state.auth};
 };
 

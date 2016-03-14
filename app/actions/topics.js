@@ -10,10 +10,13 @@ export default {
 			});
 		};
 	},
-  addTopic: (topic) => {
+  addTopic: (topic, callback) => {
     return (dispatch, getStore) => {
-      topicsRef.push(topic, (error) => {
+      let newtopicsRef = topicsRef.push();
+      let key = newtopicsRef.key();
+      newtopicsRef.set(topic, (error) => {
         if(!error){
+          callback(key);
           dispatch({type: C.ADD_TOPIC, title: topic.title});
         }
       });
