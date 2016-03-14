@@ -15,9 +15,23 @@ const TopicList = ({ topics, auth, assignTopic }) => {
   }
   const assignedTopics = (key) => {
     const topic = topics[key];
-    const timeuntilLesson = topic.date ? moment(topic.date, 'X').fromNow() : <button>Schedule Date</button>;
+    const timeuntilLesson = topic.date ? moment(topic.date, 'X').fromNow() : <Link to={'learn/' + key}><button className='pull-right btn btn-primary'>Schedule Date</button></Link>;
     if(!topic.speaker) return;
-    return <li key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker} {timeuntilLesson}</li>;
+    return <li className="list-group-item" key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker} {timeuntilLesson}</li>;
+  };
+
+
+  const unassignedTopics = (key) => {
+    const topic = topics[key];
+    if(topic.speaker) return;
+    return (
+
+      <li className="list-group-item" key={key}>
+        <Link to={'/learn/' +  key} >{topic.title}</Link>
+        <button className="btn btn-success pull-right"> Vote Up</button>
+        <button className="btn btn-primary pull-right" onClick={() => onAssign(key)}>Sign Up</button>
+      </li>
+    );
   };
 
   const onAssign = (key) =>{
@@ -27,31 +41,18 @@ const TopicList = ({ topics, auth, assignTopic }) => {
     assignTopic(key, auth.username);
   };
 
-  const unassignedTopics = (key) => {
-    const topic = topics[key];
-    if(topic.speaker) return;
-    return (
-
-      <li key={key}>
-        <Link to={'/learn/' +  key} >{topic.title}</Link>
-        <button className="btn btn-success"> Vote Up</button>
-        <button className="btn btn-primary" onClick={() => onAssign(key)}>Sign Up</button>
-      </li>
-    );
-  };
-
   return(
     <div className="container">
       <div className="row">
         <div className="col-sm-6">
           <h2>Assigned</h2>
-          <ul>
+          <ul className="list-group">
             {Object.keys(topics).map(assignedTopics)}
           </ul>
         </div>
         <div className="col-sm-6" >
           <h2>Unassigned</h2>
-          <ul>
+          <ul className="list-group">
             {Object.keys(topics).map(unassignedTopics)}
           </ul>
         </div>

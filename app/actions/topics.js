@@ -39,5 +39,14 @@ export default {
           }
       });
     };
+  },
+  updateDescription: (id, description) => {
+    return (dispatch, getStore) => {
+      topicsRef.child(id).update({ description }, (error) => {
+          if(!error){
+            dispatch({type: C.UPDATE_DESCRIPTION});
+          }
+      });
+    };
   }
 };

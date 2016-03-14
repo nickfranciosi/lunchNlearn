@@ -30,14 +30,14 @@ const TopicAdd = ({addTopic, auth}, {router}) => {
   };
 
   return(
-    <div>
-      <form onSubmit={learnSubmit}>
+    <div className="row" style={{textAlign: 'center'}}>
+      <form className="col-sm-6" onSubmit={learnSubmit}>
         <label>I want to learn</label>
         <input ref={ref => {
             learnInput = ref;
           }} type="text"/>
       </form>
-      <form onSubmit={teachSubmit}>
+      <form className="col-sm-6" onSubmit={teachSubmit}>
         <label>I want to teach</label>
         <input ref={ref => {
             teachInput = ref;
@@ -46,6 +46,7 @@ const TopicAdd = ({addTopic, auth}, {router}) => {
     </div>
   );
 };
+//bind router context to push routes programatically
 TopicAdd.contextTypes = {router: PropTypes.object};
 
 const mapStateToProps = ({auth}) => {return {auth};};

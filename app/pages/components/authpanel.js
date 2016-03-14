@@ -10,19 +10,19 @@ class Authpanel extends Component{
 		let {auth} = this.props;
 		switch(auth.currently){
 			case C.LOGGED_IN: return (
-				<div className="authpanel">
-					<span>Logged in as {auth.username}.</span>
-					{' '}<button onClick={p.logoutUser}>Log out</button>
+				<div className="navbar-right">
+					<p className="navbar-text">Logged in as {auth.username}.</p>
+				{' '}<button className="btn btn-default navbar-btn" onClick={p.logoutUser}>Log out</button>
 				</div>
 			);
 			case C.AWAITING_AUTH_RESPONSE: return (
-				<div className="authpanel">
-					<button disabled> authenticating...</button>
+				<div className="navbar-right" >
+					<button className="btn btn-default navbar-btn" disabled> authenticating...</button>
 				</div>
 			);
 			default: return (
-				<div className="authpanel">
-					<button onClick={p.attemptLogin}>Log in</button>
+				<div className="navbar-right">
+					<button className="btn btn-default navbar-btn" onClick={p.attemptLogin}>Log in</button>
 				</div>
 			);
 		}

@@ -5,7 +5,6 @@ const topicsRef = new Firebase(C.FIREBASE).child('topics');
 export default {
   setCurrentTopic: (id) => {
     return (dispatch, getState) => {
-      const { topics } = getState();
       topicsRef.child(id).on("value",function(snapshot){
         dispatch({
           type: C.SET_CURRENT_TOPIC,

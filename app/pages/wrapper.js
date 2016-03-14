@@ -10,7 +10,6 @@ class Wrapper extends Component {
         return (
             <div>
                 <Navigation />
-                <AuthPanel />
                 {this.props.children}
             </div>
         );

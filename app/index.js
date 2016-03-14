@@ -7,6 +7,7 @@ import routes from './routes';
 import store from './store';
 import actions from './actions';
 
+//injects store into all our container components
 ReactDOM.render(
          <Provider store={store} >
            <Router routes={routes} history={browserHistory}/>
