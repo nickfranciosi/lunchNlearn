@@ -1,5 +1,4 @@
 import C from '../../constants';
-// import initialState from '../initialState';
 
 const currentTopic = (state = {}, action) => {
   switch (action.type) {

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { assignTopic } from '../actions';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 //pass context through as second param to push to route
 const LearnList = ({ topics, assignTopic }) => {
@@ -13,8 +14,9 @@ const LearnList = ({ topics, assignTopic }) => {
   }
   const assignedTopics = (key) => {
     const topic = topics[key];
+    const timeuntilLesson = topic.date ? moment(topic.date, 'X').fromNow() : 'No Date Assigned Yet';
     if(!topic.speaker) return;
-    return <li key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker}</li>;
+    return <li key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker} {timeuntilLesson}</li>;
   };
 
   const unassignedTopics = (key) => {

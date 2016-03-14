@@ -5,7 +5,7 @@ const topicsRef = new Firebase(C.FIREBASE).child('topics');
 export default {
   startListeningToTopics: () => {
 		return function(dispatch,getState){
-			topicsRef.on("value",function(snapshot){
+			topicsRef.orderByChild('date').on("value",function(snapshot){
 				dispatch({ type: C.RECEIVE_TOPICS_DATA, data: snapshot.val() });
 			});
 		};
@@ -28,11 +28,11 @@ export default {
       });
     };
   },
-  addDate: (id) => {
+  assignDate: (id, date) => {
     return (dispatch, getStore) => {
-      topicsRef.child(id).update({speaker: 'Randy'}, (error) => {
+      topicsRef.child(id).update({ date }, (error) => {
           if(!error){
-            dispatch({type: C.ASSIGN_TOPIC});
+            dispatch({type: C.ASSIGN_DATE});
           }
       });
     };
