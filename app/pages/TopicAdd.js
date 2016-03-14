@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addTopic } from '../actions';
 import C from '../constants';
 
-const LearnAdd = ({addTopic, auth}, {router}) => {
+const TopicAdd = ({addTopic, auth}, {router}) => {
  let learnInput;
  let teachInput;
 
@@ -46,8 +46,8 @@ const LearnAdd = ({addTopic, auth}, {router}) => {
     </div>
   );
 };
-LearnAdd.contextTypes = {router: PropTypes.object};
+TopicAdd.contextTypes = {router: PropTypes.object};
 
 const mapStateToProps = ({auth}) => {return {auth};};
 
-export default connect(mapStateToProps,{addTopic})(LearnAdd);
+export default connect(mapStateToProps,{addTopic})(TopicAdd);
