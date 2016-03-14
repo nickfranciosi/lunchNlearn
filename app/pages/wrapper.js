@@ -8,8 +8,8 @@ class Wrapper extends Component {
 
     render(){
         return (
-            <div>
-                <Navigation />
+            <div className="wrapper">
+                {/*<Navigation />*/}
                 {this.props.children}
             </div>
         );

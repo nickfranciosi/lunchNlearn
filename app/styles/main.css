@@ -1,0 +1,36 @@
+html, body, .container, #app, .flex-section, .wrapper {
+  height: 100%;
+}
+
+body {
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  line-height: 150%;
+  text-align: center;
+
+}
+
+.left-half, .right-half{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Pattern styles */
+.flex-container {
+  height: 100%;
+  display: flex;
+}
+
+.left-half {
+  background-color: #F39949;
+  flex: 1;
+  padding: 1rem;
+}
+
+.right-half {
+  background-color: #344970;
+  flex: 1;
+  padding: 1rem;
+}
