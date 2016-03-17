@@ -17,7 +17,7 @@ const TopicList = ({ topics, auth, assignTopic }) => {
     const topic = topics[key];
     const timeuntilLesson = topic.date ? moment(topic.date, 'X').fromNow() : <Link to={'learn/' + key}><button className='pull-right btn btn-primary'>Schedule Date</button></Link>;
     if(!topic.speaker) return;
-    return <li className="list-group-item" key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker} {timeuntilLesson}</li>;
+    return <li className="list-group-item" key={key}><Link to={'learn/' +  key} >{topic.title}</Link> , {topic.speaker.username} {timeuntilLesson}</li>;
   };
 
 

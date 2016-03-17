@@ -10,6 +10,7 @@ export default {
     title: null,
     description: null,
     assigned: null,
-    date: null
+    date: null,
+    speaker: null
   }
 };

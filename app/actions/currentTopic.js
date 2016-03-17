@@ -6,6 +6,7 @@ export default {
   setCurrentTopic: (id) => {
     return (dispatch, getState) => {
       topicsRef.child(id).on("value",function(snapshot){
+        console.log(snapshot.val());
         dispatch({
           type: C.SET_CURRENT_TOPIC,
           id: id,

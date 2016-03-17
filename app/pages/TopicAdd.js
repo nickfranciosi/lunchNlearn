@@ -13,7 +13,8 @@ const TopicAdd = ({addTopic, auth}, {router}) => {
      alert('Log in to teach');
      return;
    }
-   handleSubmit(teachInput.value, auth.username);
+   console.log(auth);
+   handleSubmit(teachInput.value, auth);
  };
 
  const learnSubmit = (e) => {
