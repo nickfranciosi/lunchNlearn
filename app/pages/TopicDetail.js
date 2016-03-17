@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { setCurrentTopic, assignDate, updateDescription } from '../actions';
+import { setCurrentTopic, assignDate, updateDescription, assignTopic } from '../actions';
+import C from '../constants';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import styles from 'react-datepicker/dist/react-datepicker.css';
@@ -19,6 +20,15 @@ class TopicDetail extends Component {
 	    return day == 5;
 	}
 
+  onAssign(){
+    let {auth} = this.props;
+    if( auth.currently != C.LOGGED_IN){
+      alert('You must be logged in to teach');
+      return;
+    }
+    this.props.assignTopic(this.props.params.id, auth.username);
+  }
+
   render(){
 
     const { topic } = this.props;
@@ -34,6 +44,7 @@ class TopicDetail extends Component {
       <div>
         <h2>{topic.title}</h2>
         <h5>Speaker: {topic.speaker}</h5>
+        <button className="btn" onClick={this.onAssign.bind(this)}>Teach This</button>
         <DatePicker
           minDate={moment()}
           selected={selectedDate}
@@ -55,9 +66,10 @@ class TopicDetail extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    topic: state.currentTopic
+    topic: state.currentTopic,
+    auth: state.auth
   };
 };
 
 
-export default connect(mapStateToProps, { setCurrentTopic, assignDate, updateDescription })(TopicDetail);
+export default connect(mapStateToProps, { setCurrentTopic, assignDate, updateDescription, assignTopic })(TopicDetail);
