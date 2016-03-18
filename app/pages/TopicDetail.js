@@ -58,7 +58,7 @@ class TopicDetail extends Component {
 
     let textArea;
     const selectedDate = topic.date ? moment(topic.date, 'X') : null;
-    let unAssingButton = canEdit ? <button className="btn" onClick={this.onUnassign.bind(this)}>Unnassign Me</button> : '';
+    let unAssingButton = canEdit ? <button className="btn btn-primary" onClick={this.onUnassign.bind(this)}>Unnassign Me</button> : '';
     return (
       <div>
         <h2>{topic.title}</h2>
