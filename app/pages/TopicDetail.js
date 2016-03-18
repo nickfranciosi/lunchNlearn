@@ -37,6 +37,7 @@ class TopicDetail extends Component {
       return;
     }
     this.props.assignTopic(this.props.params.id, {});
+    this.props.assignDate(this.props.params.id, {});
   }
 
   render(){
@@ -52,32 +53,44 @@ class TopicDetail extends Component {
       canEdit = true;
     }
 
-    console.log(canEdit);
     let speakerOrAssign = topic.speaker?  topic.speaker.username : <AssignMe onAssign={this.onAssign.bind(this)} />;
 
 
     let textArea;
     const selectedDate = topic.date ? moment(topic.date, 'X') : null;
-    let unAssingButton = canEdit ? <button className="btn btn-primary" onClick={this.onUnassign.bind(this)}>Unnassign Me</button> : '';
+    let editorPrivilege = null;
+    if(canEdit){
+      editorPrivilege = (
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={this.onUnassign.bind(this)}>Unnassign Me
+      </button>
+      <DatePicker
+        minDate={moment()}
+        selected={selectedDate}
+        filterDate={this.isFriday}
+        onChange={(date) => this.props.assignDate(topic.id, date.unix())}
+        placeholderText="Select a Day to Teach"
+      />
+      <div className="form-group">
+        <label>Description:</label>
+        <textarea
+        className="form-control"
+        ref={(input) => textArea = input}
+        value={topic.description}
+        onChange={() => this.handleDescriptionChange(textArea.value)} />
+      </div>
+    </div>
+  );
+}
     return (
       <div>
         <h2>{topic.title}</h2>
         <h5>Speaker: {speakerOrAssign}</h5>
-        {unAssingButton}
-        <DatePicker
-          minDate={moment()}
-          selected={selectedDate}
-          filterDate={this.isFriday}
-          onChange={(date) => this.props.assignDate(topic.id, date.unix())}
-          placeholderText="Select a Day to Teach" />
-        <div className="form-group">
-          <label>Description:</label>
-          <textarea
-          className="form-control"
-          ref={(input) => textArea = input}
-          value={topic.description}
-          onChange={() => this.handleDescriptionChange(textArea.value)} />
-        </div>
+        {selectedDate ? selectedDate.format("MMM Do YY") : 'Not Yet Scheduled' }
+        {editorPrivilege || <p>{topic.description || ''}</p>}
+
       </div>
     );
   }
