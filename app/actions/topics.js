@@ -48,5 +48,15 @@ export default {
           }
       });
     };
+  },
+  upVote: (id) => {
+    console.log(id);
+    return (dispatch, getStore) => {
+      topicsRef.child(id).update({ title: 'new one' }, (error) => {
+          if(!error){
+            dispatch({type: C.UPDATE_DESCRIPTION});
+          }
+      });
+    };
   }
 };
